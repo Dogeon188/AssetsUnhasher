@@ -4,3 +4,4 @@ c.bat
 *.class
 bin/me
 bin/org
+*.jar

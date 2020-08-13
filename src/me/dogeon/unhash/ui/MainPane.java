@@ -128,14 +128,18 @@ public class MainPane extends GridPane {
         try {
             versionCB.getItems().clear();
             for (String versionName : new File(Variables.mchome, "assets/indexes").list()) {
-                if (versionName.substring(versionName.length() - 5) == ".json") {
-                    versionCB.getItems().add(versionName.substring(0, versionName.length() - 5));
+                String v = versionName.substring(0, versionName.length() - 5);
+                if (versionName.substring(versionName.length() - 5).equals(".json")) {
+                    versionCB.getItems().add(v);
                 }
             }
-            versionCB.setValue(versionCB.getItems().get(0));
-            Variables.mcversion = versionCB.getValue().toString();
+            if (versionCB.getItems().size() > 0) {
+                versionCB.setValue(versionCB.getItems().get(0));
+                Variables.mcversion = versionCB.getValue().toString();
+            }
         } catch (Exception e) {
             new Alert(Alert.AlertType.ERROR, Language.get("error.non_mcfolder")).showAndWait();
+            e.printStackTrace();
         }
     }
 
