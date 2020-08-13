@@ -4,6 +4,8 @@
 
 **NOTE:** If this violates any sort of law or something, please contact me and I'll deal with it.
 
+![](https://i.imgur.com/LMTX6aS.png)
+
 ## Select Minecraft Folder
 
 Normally on startup, the app will automatically find your minecraft folder, but you can also manually change it on your own.
