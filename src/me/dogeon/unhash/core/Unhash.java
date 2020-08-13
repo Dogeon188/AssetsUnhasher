@@ -44,9 +44,6 @@ public class Unhash {
 
 		dst_dir.mkdirs();
 
-		MainPane.progressbar.setVisible(true);
-        MainPane.prompt.setVisible(true);
-
 		JSONObject tmp_obj = (JSONObject) new JSONParser().parse(new FileReader(
 			String.format("%s/assets/indexes/%s.json", Variables.mchome, Variables.mcversion)
 		));
@@ -58,6 +55,9 @@ public class Unhash {
 		if (fileCountLimit == -1) fileCountLimit = obj.size();
 
 		FileWriter hashtable = new FileWriter(hashtable_path);
+
+		MainPane.progressbar.setVisible(true);
+        MainPane.prompt.setVisible(true);
 
 		for (Object key : obj.keySet()) {
 			if (fileCount >= fileCountLimit) break;
