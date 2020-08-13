@@ -1,0 +1,14 @@
+main.title=Assets Unhasher
+main.mchome.label=Select Minecraft Folder
+main.version.label=Minecraft Assets Version
+main.fclim.label=Output File Limit
+main.fclim.desc=The max number of files being unhashed.\nLeave blank to unhash all files.
+main.hashtable.label=Write Hashtable
+main.hashtable.desc=Hashtable file will be put in <mcfolder>/assets_unhash/<version>.txt\nFormat: <hash> -> <file name>
+main.desc=Unhashed files will be put in <mcfolder>/assets_unhash/<version>
+main.commit=Unhash Assets Files
+prog.title=Unhashing assets files...
+prog.prompt=%d%% - Cpoying hashed file %s to %s...
+done.label=Finished unhashing!
+error.non_mcfolder=An error occured!\nThis should be caused by not choosing a minecraft folder.
+error.unknown=An unknown error occured!

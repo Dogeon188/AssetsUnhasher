@@ -1,0 +1,11 @@
+* {-fx-font-size: 18px;}
+.root {-fx-background-color: #2f363d;}
+.label, .button, .check-box, .check-box:selected .mark {-fx-text-fill: #d1d5da;}
+.check-box .box, .combo-box, .combo-box .combo-box-popup *, .combo-box .list-cell {-fx-background-color: #1d2125; -fx-text-fill: #d1d5da; -fx-cursor: hand;}
+.progress-bar .track {-fx-background-color: #1d2125;}
+.progress-bar .bar {-fx-background-color: #0372ef;}
+.combo-box-base .arrow-button .arrow {-fx-background-color: #d1d5da;}
+.button {-fx-background-color: #0366d6;-fx-cursor: hand;}
+.button:hover {-fx-background-color: #0372ef;}
+.text-field {-fx-background-color: #1d2125;-fx-text-fill: #d1d5da;}
+#fclim-desc, #hashtable-desc, #main-desc {-fx-text-fill: #959da5;}

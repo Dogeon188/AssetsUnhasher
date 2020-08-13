@@ -1,0 +1,14 @@
+unhash.title=Minecraft資源解碼小幫手
+main.mchome.label=選擇minecraft資料夾
+main.version.label=資源版本
+main.fclim.label=輸出檔案數量限制
+main.fclim.desc=最多可以輸出多少檔案。留空=不限制數量。
+main.hashtable.label=輸出映射表
+main.hashtable.desc=會被放在 <minecraft資料夾>/assets_unhash/<版本>.txt\n格式：<雜湊值> -> <檔案名稱>
+main.desc=解碼過後的資料夾會放在 <minecraft資料夾>/assets_unhash/<版本> 的資料夾
+main.commit=解碼minecraft資源
+prog.title=解碼資源中...
+prog.prompt=%d%% - 將 %s 複製至 %s...
+done.label=解碼大成功OWO
+error.non_mcfolder=出現錯誤惹QAQ\n可能你選的資料夾不是minecraft資料夾喔
+error.unknown=出現未知的錯誤惹QAQ
