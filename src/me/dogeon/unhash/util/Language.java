@@ -8,9 +8,6 @@ import java.util.Locale;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
 
-// got the code from FabricInstaller
-// see https://fabricmc.net/
-
 public class Language {
 
 	public static final ResourceBundle BUNDLE = ResourceBundle.getBundle(
