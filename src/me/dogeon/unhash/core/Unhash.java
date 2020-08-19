@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
-import me.dogeon.unhash.ui.MainPane;
+import me.dogeon.unhash.Main;
 import me.dogeon.unhash.util.Language;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -21,9 +21,7 @@ public class Unhash {
             new Thread(() -> {
 				Variables.flagUnhashing = true;
             	try { _unhash(); } catch (Exception e) {
-            		Platform.runLater(() -> {
-		                new Alert(Alert.AlertType.ERROR, Language.get("error.unknown")).showAndWait();
-		            });
+            		Platform.runLater(() -> new Alert(Alert.AlertType.ERROR, Language.get("error.unknown")).showAndWait());
             	}
 				Variables.flagUnhashing = false;
             }).start();
@@ -36,19 +34,16 @@ public class Unhash {
 		File hashtable_path = new File(dst_dir.toString() + "/hash.tmp");
 
 		if (!src_dir.exists()) {
-			Platform.runLater(() -> {
-                new Alert(Alert.AlertType.ERROR, Language.get("error.non_mcfolder")).showAndWait();
-            });
+			Platform.runLater(() -> new Alert(Alert.AlertType.ERROR, Language.get("error.non_mcfolder")).showAndWait());
             return;
 		}
 
 		dst_dir.mkdirs();
 
-		JSONObject tmp_obj = (JSONObject) new JSONParser().parse(new FileReader(
-			String.format("%s/assets/indexes/%s.json", Variables.mchome, Variables.mcversion)
-		));
-		JSONObject obj = (JSONObject) tmp_obj.get("objects");
-		tmp_obj = null;
+		JSONObject obj;
+		obj = (JSONObject) ( (JSONObject) new JSONParser().parse(new FileReader(
+				String.format("%s/assets/indexes/%s.json", Variables.mchome, Variables.mcversion)
+		))).get("objects");
 
 		int fileCount = 0;
 		int fileCountLimit = Variables.fclimit;
@@ -56,14 +51,12 @@ public class Unhash {
 
 		FileWriter hashtable = new FileWriter(hashtable_path);
 
-		MainPane.progressbar.setVisible(true);
-        MainPane.prompt.setVisible(true);
+		Main.progressbar.setVisible(true);
+        Main.prompt.setVisible(true);
 
 		for (Object key : obj.keySet()) {
 			if (fileCount >= fileCountLimit) break;
-			JSONObject val = (JSONObject) obj.get(key);
-			String hash_str = val.get("hash").toString();
-			val = null;
+			String hash_str = ((JSONObject) obj.get(key)).get("hash").toString();
 
 			File dst_path = new File(dst_dir, key.toString());
 			File src_path = new File(src_dir, hash_str.substring(0,2) + "/" + hash_str);
@@ -73,8 +66,8 @@ public class Unhash {
 			float fcp = 1f * fileCount / fileCountLimit;
 
             Platform.runLater(() -> {
-                MainPane.setProgress(fcp);
-                MainPane.setPrompt(String.format(
+                Main.setProgress(fcp);
+                Main.setPrompt(String.format(
                 	Language.get("prog.prompt"),
                 	Math.round(fcp * 100),
                 	hash_str,
@@ -93,24 +86,15 @@ public class Unhash {
 		}
 		hashtable_path.delete();
 
-		MainPane.progressbar.setVisible(false);
-        Platform.runLater(() -> {
-            MainPane.setPrompt(Language.get("done.label"));
-        });
+		Main.progressbar.setVisible(false);
+        Platform.runLater(() -> Main.setPrompt(Language.get("done.label")));
         Thread.sleep(1000);
-        MainPane.prompt.setVisible(false);
+        Main.prompt.setVisible(false);
 	}
 
-	private static void copyFile(File src, File dest) throws IOException {  
-		FileChannel i = null;  
-		FileChannel o = null;  
-		try {
-			i = new FileInputStream(src).getChannel();
-			o = new FileOutputStream(dest).getChannel();
+	private static void copyFile(File src, File dest) throws IOException {
+		try (FileChannel i = new FileInputStream(src).getChannel(); FileChannel o = new FileOutputStream(dest).getChannel()) {
 			o.transferFrom(i, 0, i.size());
-		} finally {
-			i.close();
-			o.close();
 		}
 	}
 }

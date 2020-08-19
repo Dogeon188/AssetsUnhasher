@@ -1,4 +1,4 @@
-* {-fx-font-size: 18px;}
+* {-fx-font-size: 14px;}
 .root {-fx-background-color: #2f363d;}
 .label, .button, .check-box, .check-box:selected .mark {-fx-text-fill: #d1d5da;}
 .check-box .box, .combo-box, .combo-box .combo-box-popup *, .combo-box .list-cell {-fx-background-color: #1d2125; -fx-text-fill: #d1d5da; -fx-cursor: hand;}
